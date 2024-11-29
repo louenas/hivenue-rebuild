@@ -1,0 +1,62 @@
+/* frontend/rental-app/src/pages/NotFound.css */
+
+.notfound-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+  
+  .notfound-container h1 {
+    font-size: 6rem;
+    margin-bottom: 20px;
+    color: #dc3545; /* Bootstrap's danger color */
+  }
+  
+  .notfound-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #343a40; /* Bootstrap's dark color */
+  }
+  
+  .notfound-container p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #6c757d; /* Bootstrap's secondary color */
+  }
+  
+  .home-link {
+    padding: 10px 20px;
+    background-color: #007bff; /* Bootstrap's primary color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-link:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .notfound-container h1 {
+      font-size: 4rem;
+    }
+  
+    .notfound-container h2 {
+      font-size: 2rem;
+    }
+  
+    .notfound-container p {
+      font-size: 1rem;
+    }
+  
+    .home-link {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+  }

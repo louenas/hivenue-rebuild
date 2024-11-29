@@ -1,0 +1,61 @@
+/* frontend/rental-app/src/pages/AddApartment.css */
+
+.add-apartment-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-apartment-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-apartment-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-apartment-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .add-apartment-container input,
+  .add-apartment-container textarea,
+  .add-apartment-container select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .add-apartment-container input[type="file"] {
+    padding: 5px;
+  }
+  
+  .add-apartment-container button {
+    padding: 12px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .add-apartment-container button:hover {
+    background-color: #218838;
+  }
+  
+  .add-apartment-container .error-message {
+    color: red;
+    margin-bottom: 15px;
+  }
+  
+  .add-apartment-container .success-message {
+    color: green;
+    margin-bottom: 15px;
+  }

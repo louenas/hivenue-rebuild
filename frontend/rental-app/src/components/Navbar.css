@@ -1,0 +1,44 @@
+/* frontend/rental-app/src/components/Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #34495e;
+  padding: 15px 30px;
+}
+
+.navbar-logo a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar-links li a:hover {
+  color: #bdc3c7;
+}
+
+.logout-button {
+  background-color: transparent;
+  border: none;
+  color: #ecf0f1;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.logout-button:hover {
+  color: #bdc3c7;
+}

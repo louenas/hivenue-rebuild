@@ -1,0 +1,93 @@
+/* frontend/rental-app/src/pages/BookingRequests.css */
+
+.booking-requests-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .booking-requests-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .booking-requests-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .booking-requests-table th,
+  .booking-requests-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .booking-requests-table th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+  
+  .booking-requests-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .booking-requests-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .approve-button,
+  .deny-button {
+    padding: 6px 12px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .approve-button {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .approve-button:hover {
+    background-color: #218838;
+  }
+  
+  .deny-button {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .deny-button:hover {
+    background-color: #c82333;
+  }
+  
+  .error-message {
+    color: red;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .loading-message {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 30px;
+  }
+  
+  @media (max-width: 768px) {
+    .booking-requests-table th,
+    .booking-requests-table td {
+      padding: 8px;
+      font-size: 12px;
+    }
+  
+    .approve-button,
+    .deny-button {
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+  }
