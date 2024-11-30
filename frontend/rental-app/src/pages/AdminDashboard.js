@@ -34,12 +34,14 @@ const AdminDashboard = () => {
     }
   }, [authData.token, logout]);
 
-  const handleApprove = async (id) => {
+  const handleApprove = async (id, role) => {
     try {
-      await axios.post(`/bookings/${id}/admin-approve`);
+      const route = role === 'owner' ? 'owner-approve' : 'admin-approve';
+      const status = role === 'owner' ? 'owner_approved' : 'admin_approved';
+      await axios.post(`/bookings/${id}/${route}`);
       setBookingRequests(
         bookingRequests.map((booking) =>
-          booking._id === id ? { ...booking, status: 'admin_approved' } : booking
+          booking._id === id ? { ...booking, status: `${status}` } : booking
         )
       );
     } catch (err) {
@@ -87,6 +89,7 @@ const AdminDashboard = () => {
         <p>No pending booking requests.</p>
       ) : (
         <ul className="booking-requests">
+          
           {bookingRequests.map((booking) => (
             <li key={booking._id} className="booking-request">
               <h3>Booking ID: {booking._id}</h3>
@@ -97,9 +100,15 @@ const AdminDashboard = () => {
               <p><strong>Amount:</strong> ${booking.amount}</p>
               <p><strong>Status:</strong> {booking.status}</p>
               {/* Action Buttons */}
-              {booking.status === 'Pending' && (
+              {booking.status === 'Pending' && ( 
                 <div className="actions">
-                  <button onClick={() => handleApprove(booking._id)}>Approve</button>
+                  <button onClick={() => handleApprove(booking._id, 'admin')}>Approve</button>
+                  <button onClick={() => handleDeny(booking._id)}>Deny</button>
+                </div>
+              )}
+              {booking.status === 'Admin Approved' && (
+                <div className="actions">
+                  <button onClick={() => handleApprove(booking._id, 'owner')}>Approve</button>
                   <button onClick={() => handleDeny(booking._id)}>Deny</button>
                 </div>
               )}
