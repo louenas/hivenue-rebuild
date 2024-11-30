@@ -8,12 +8,13 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const path = require('path');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 
 dotenv.config();
 
 // Define allowed origins
 const allowedOrigins = [
-  process.env.FRONTEND_URL || 'http://localhost:3000'
+  process.env.FRONTEND_URL
 ].filter(Boolean); // Remove any undefined values
 
 // Import routes
@@ -29,7 +30,7 @@ const app = express();
 app.use(cors({
   origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
 
@@ -58,6 +59,48 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/apartments', apartmentsRoutes);
 app.use('/api/payments', paymentsRoutes);
 app.use('/api/webhooks', webhookRoutes); // Mount webhook routes
+
+// Example login route
+app.post('/api/auth/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    
+    // Find user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+    
+    // Check password
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+    
+    // Generate JWT
+    const token = jwt.sign(
+      { id: user._id, role: user.role }, // Include role in the token payload
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+    
+    // Respond with token, user, and role
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        // Add other user fields as needed
+      },
+      role: user.role, // Assuming 'role' is a field in your User model
+    });
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {

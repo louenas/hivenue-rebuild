@@ -13,6 +13,7 @@
     },
     "dependencies": {
         "jwt-decode": "^4.0.0",
-        "react-modal": "^3.16.1"
+        "react-modal": "^3.16.1",
+        "winston": "^3.17.0"
     }
 }

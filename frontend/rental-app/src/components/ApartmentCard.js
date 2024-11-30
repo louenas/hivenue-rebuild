@@ -12,7 +12,7 @@ const ApartmentCard = ({ apartment }) => {
       />
       <div className="apartment-card-details">
         <h3>{apartment.title}</h3>
-        <p className="location">{apartment.city} - ${apartment.price}/month</p>
+        <p className="location">{apartment.city} - ${apartment.pricePerMonth}/month</p>
         <Link to={`/apartments/${apartment._id}`} className="view-details">
           View Details
         </Link>

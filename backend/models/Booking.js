@@ -21,27 +21,34 @@ const BookingSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  documentation: {
-    type: String,
-    required: false,
-  },
-  paymentMethodId: {
-    type: String,
-    required: false,
-  },
   amount: {
     type: Number,
     required: true,
   },
-  status: {
+  paymentMethodId: {
     type: String,
-    enum: ['Pending', 'Approved', 'Denied', 'admin_approved', 'admin_denied'],
-    default: 'Pending',
+    required: true,
   },
   paymentIntentId: {
     type: String,
-    required: false,
   },
-}, { timestamps: true });
+  adminApproved: {
+    type: Boolean,
+    default: false,
+  },
+  ownerApproved: {
+    type: Boolean,
+    default: false,
+  },
+  status: {
+    type: String,
+    enum: ['Pending', 'Admin Approved', 'Owner Approved', 'Rejected'],
+    default: 'Pending',
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 module.exports = mongoose.model('Booking', BookingSchema);

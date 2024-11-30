@@ -64,7 +64,7 @@ const ApartmentDetail = () => {
           <img key={index} src={img} alt={`${apartment.title} ${index + 1}`} className="apartment-image" />
         ))}
       </div>
-      <p><strong>Price:</strong> ${apartment.price}/month</p>
+      <p><strong>Price:</strong> ${apartment.pricePerMonth}/month</p>
       <p><strong>Location:</strong> {apartment.address}, {apartment.city}</p>
       <p><strong>Description:</strong> {apartment.description}</p>
       <p><strong>Amenities:</strong> {apartment.amenities.join(', ')}</p>

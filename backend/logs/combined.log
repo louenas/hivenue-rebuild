@@ -1,0 +1,5 @@
+{"level":"info","message":"User (674a69996900e658a05c7a27) with role (admin) accessed /api/bookings/pending","timestamp":"2024-11-30T04:52:55.737Z"}
+{"level":"info","message":"User (674a69996900e658a05c7a27) with role (admin) accessed /api/bookings/pending","timestamp":"2024-11-30T04:52:55.740Z"}
+{"level":"info","message":"User (674779538c41c835e2c14655) with role (owner) accessed /api/bookings/pending","timestamp":"2024-11-30T04:53:00.683Z"}
+{"level":"info","message":"User (674779538c41c835e2c14655) with role (owner) accessed /api/bookings/pending","timestamp":"2024-11-30T04:53:00.739Z"}
+{"level":"info","message":"User (674779538c41c835e2c14655) with role (owner) accessed /api/bookings/pending","timestamp":"2024-11-30T04:53:00.753Z"}

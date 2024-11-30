@@ -36,7 +36,7 @@ const AdminDashboard = () => {
 
   const handleApprove = async (id) => {
     try {
-      await axios.put(`/bookings/${id}/approve/admin`);
+      await axios.post(`/bookings/${id}/admin-approve`);
       setBookingRequests(
         bookingRequests.map((booking) =>
           booking._id === id ? { ...booking, status: 'admin_approved' } : booking
@@ -50,7 +50,7 @@ const AdminDashboard = () => {
 
   const handleDeny = async (id) => {
     try {
-      await axios.put(`/bookings/${id}/deny/admin`);
+      await axios.post(`/bookings/${id}/reject`);
       setBookingRequests(
         bookingRequests.map((booking) =>
           booking._id === id ? { ...booking, status: 'admin_denied' } : booking

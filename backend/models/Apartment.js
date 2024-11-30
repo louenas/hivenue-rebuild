@@ -13,7 +13,7 @@ const apartmentSchema = new Schema({
   }],
   amenities: [String],
   images: [String], // URLs or file paths
-  price: { type: Number, required: true },
+  pricePerMonth: { type: Number, required: true },
   city: { type: String, required: true },
   address: { type: String, required: true },
   // Additional fields as needed

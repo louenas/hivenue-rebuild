@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 backend/.env
 frontend/rental-app/.env
+logs/error.log
+logs/combined.log

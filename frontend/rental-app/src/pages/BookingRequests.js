@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../contexts/AuthContext';
+import BookingItem from '../components/BookingItem';
 import './BookingRequests.css'; // Optional: For custom styles
 
 const BookingRequests = () => {
@@ -15,10 +16,10 @@ const BookingRequests = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/bookings`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/bookings/pending`, {
           headers: { 'Authorization': `Bearer ${authData.token}` }
         });
-        setBookings(res.data);
+        setBookings(res.data.bookings);
         setLoading(false);
       } catch (err) {
         console.error(err);
@@ -30,42 +31,13 @@ const BookingRequests = () => {
     fetchBookings();
   }, [authData.token]);
   
-  // Handle Approve Booking
-  const handleApprove = async (bookingId) => {
-    if (window.confirm('Are you sure you want to approve this booking?')) {
-      try {
-        await axios.put(`${process.env.REACT_APP_API_URL}/bookings/${bookingId}/approve`, {}, {
-          headers: { 'Authorization': `Bearer ${authData.token}` }
-        });
-        // Update booking status locally
-        setBookings(bookings.map(booking => 
-          booking._id === bookingId ? { ...booking, status: 'approved' } : booking
-        ));
-      } catch (err) {
-        console.error(err);
-        alert(err.response?.data?.message || 'Failed to approve booking.');
-      }
-    }
+  // Update booking status locally after approve/deny
+  const handleUpdate = (bookingId, newStatus) => {
+    setBookings(bookings.map(booking => 
+      booking._id === bookingId ? { ...booking, status: newStatus } : booking
+    ));
   };
-  
-  // Handle Deny Booking
-  const handleDeny = async (bookingId) => {
-    if (window.confirm('Are you sure you want to deny this booking?')) {
-      try {
-        await axios.put(`${process.env.REACT_APP_API_URL}/bookings/${bookingId}/deny`, {}, {
-          headers: { 'Authorization': `Bearer ${authData.token}` }
-        });
-        // Update booking status locally
-        setBookings(bookings.map(booking => 
-          booking._id === bookingId ? { ...booking, status: 'denied' } : booking
-        ));
-      } catch (err) {
-        console.error(err);
-        alert(err.response?.data?.message || 'Failed to deny booking.');
-      }
-    }
-  };
-  
+
   // Render loading, error, or bookings table
   if (loading) return <p>Loading bookings...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
@@ -90,43 +62,12 @@ const BookingRequests = () => {
           </thead>
           <tbody>
             {bookings.map(booking => (
-              <tr key={booking._id}>
-                <td>{booking.tenant.name}</td>
-                <td>{booking.apartment.title}</td>
-                <td>{new Date(booking.startDate).toLocaleDateString()}</td>
-                <td>{new Date(booking.endDate).toLocaleDateString()}</td>
-                <td>
-                  {booking.documentation ? (
-                    <a href={booking.documentation} target="_blank" rel="noopener noreferrer">
-                      View Docs
-                    </a>
-                  ) : (
-                    'N/A'
-                  )}
-                </td>
-                <td>{booking.status}</td>
-                <td>
-                  {booking.status === 'pending' && (
-                    <>
-                      <button 
-                        className="approve-button" 
-                        onClick={() => handleApprove(booking._id)}
-                      >
-                        Approve
-                      </button>
-                      <button 
-                        className="deny-button" 
-                        onClick={() => handleDeny(booking._id)}
-                      >
-                        Deny
-                      </button>
-                    </>
-                  )}
-                  {booking.status !== 'pending' && (
-                    <span>--</span>
-                  )}
-                </td>
-              </tr>
+              <BookingItem 
+                key={booking._id} 
+                booking={booking} 
+                authData={authData} 
+                onUpdate={handleUpdate} 
+              />
             ))}
           </tbody>
         </table>

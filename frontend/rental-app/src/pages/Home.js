@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ApartmentCard from '../components/ApartmentCard';
+import Navbar from '../components/Navbar';
+import { AuthContext } from '../contexts/AuthContext';
 
 const Home = () => {
   const [apartments, setApartments] = useState([]);
@@ -10,6 +12,10 @@ const Home = () => {
     startDate: '',
     endDate: '',
   });
+  
+  const { authData } = useContext(AuthContext);
+  const user = authData.user;
+  const role = authData.role;
 
   const fetchApartments = async () => {
     try {
@@ -56,6 +62,7 @@ const Home = () => {
           <p>No apartments found.</p>
         )}
       </div>
+      <Navbar />
     </div>
   );
 };
