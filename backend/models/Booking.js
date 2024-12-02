@@ -45,10 +45,19 @@ const BookingSchema = new mongoose.Schema({
     enum: ['Pending', 'Admin Approved', 'Owner Approved', 'Rejected'],
     default: 'Pending',
   },
+  invoiceId: {
+    type: String,
+    default: null,
+  },
+  invoiceStatus: {
+    type: String,
+    enum: ['Pending', 'Paid', 'Failed'],
+    default: 'Pending',
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Booking', BookingSchema);

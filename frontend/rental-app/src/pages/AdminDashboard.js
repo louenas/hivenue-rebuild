@@ -99,6 +99,7 @@ const AdminDashboard = () => {
               <p><strong>End Date:</strong> {new Date(booking.endDate).toLocaleDateString()}</p>
               <p><strong>Amount:</strong> ${booking.amount}</p>
               <p><strong>Status:</strong> {booking.status}</p>
+              <p><strong>Invoice Status:</strong> {booking.invoiceStatus}</p>
               {/* Action Buttons */}
               {booking.status === 'Pending' && ( 
                 <div className="actions">

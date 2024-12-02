@@ -9,6 +9,7 @@ const Booking = require('../models/Booking'); // Booking model
 const Apartment = require('../models/Apartment'); // Apartment model
 const stripe = require('../config/stripe'); // Stripe instance
 const logger = require('../utils/logger'); // Logger (optional, for better logging)
+const InvoiceService = require('../services/invoiceService'); // Invoice service
 
 // Helper function to calculate months between dates (rounded up)
 function calculateMonths(startDate, endDate) {
@@ -124,7 +125,7 @@ router.get('/pending', auth, authorize('admin', 'owner'), async (req, res) => {
   }
 });
 
-// PUT /api/bookings/:id/admin-approve - Admin approves a booking
+// POST /api/bookings/:id/admin-approve - Admin approves a booking
 router.post('/:id/admin-approve', auth, authorize('admin'), async (req, res) => {
   const bookingId = req.params.id;
 
@@ -151,7 +152,7 @@ router.post('/:id/admin-approve', auth, authorize('admin'), async (req, res) => 
   }
 });
 
-// PUT /api/bookings/:id/owner-approve - Owner approves a booking
+// POST /api/bookings/:id/owner-approve - Owner approves a booking
 router.post('/:id/owner-approve', auth, authorize('owner'), async (req, res) => {
   const bookingId = req.params.id;
 
@@ -170,37 +171,38 @@ router.post('/:id/owner-approve', auth, authorize('owner'), async (req, res) => 
       return res.status(400).json({ message: 'Booking already owner approved.' });
     }
 
-    // Process Payment (if applicable)
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: booking.amount * 100, // Convert to cents for Stripe
-      currency: 'usd',
-      customer: booking.tenant.stripeCustomerId,
-      payment_method: booking.paymentMethodId,
-      off_session: true,
-      confirm: true,
-    });
+    // Calculate the number of months for the booking
+    const durationMonths = calculateMonths(booking.startDate, booking.endDate);
+    
+    // Calculate the total amount based on the apartment's price per month
+    const apartment = await Apartment.findById(booking.apartment);
+    if (!apartment) {
+      return res.status(404).json({ message: 'Apartment not found.' });
+    }
+    
+    booking.amount = apartment.pricePerMonth * durationMonths; // Set the calculated amount
 
     // Update owner approval status
     booking.ownerApproved = true;
     booking.status = 'Owner Approved';
-    booking.paymentIntentId = paymentIntent.id;
+
+    // Create an invoice after owner approval
+    const invoice = await InvoiceService.createInvoice(booking); // Create an invoice using a service
+    booking.invoiceId = invoice.id; // Save the invoice ID to the booking
+    booking.invoiceStatus = 'Pending'; // Set the invoice status
+
+    // Save the updated booking
     await booking.save();
 
-    res.json({ message: 'Booking approved by owner and payment processed successfully.', booking });
+    res.json({ message: 'Booking approved by owner and invoice created successfully.', booking });
   } catch (error) {
-    logger.error('Error approving booking by owner:', error);
-
-    if (error.code === 'authentication_required') {
-      // Handle scenario where additional authentication is required
-      return res.status(400).json({ message: 'Authentication required to process payment.' });
-    }
-
-    res.status(500).json({ message: 'Failed to approve booking and process payment.' });
+    console.error('Error approving booking by owner:', error);
+    res.status(500).json({ message: 'Failed to approve booking and create invoice.' });
   }
 });
 
-// PUT /api/bookings/:id/reject - Admin or Owner can reject a booking
-router.put('/:id/reject', auth, authorize('admin', 'owner'), async (req, res) => {
+// POST /api/bookings/:id/reject - Admin or Owner can reject a booking
+router.post('/:id/reject', auth, authorize('admin', 'owner'), async (req, res) => {
   const bookingId = req.params.id;
 
   try {
