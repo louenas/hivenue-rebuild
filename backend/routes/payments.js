@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
-const stripe = require('../config/stripe');
+const stripe = require('../utils/stripe');
 const Booking = require('../models/Booking');
 
 // POST /api/payments/create-setup-intent
@@ -63,6 +63,27 @@ router.post('/webhook', express.raw({ type: 'application/json' }), async (req, r
   }
 
   res.json({ received: true });
+});
+
+// Set a payment method as the customer's default
+router.post('/set-default-payment-method', auth, async (req, res) => {
+  const { paymentMethodId } = req.body;
+
+  try {
+    const customer = await stripe.customers.update(
+      req.user.stripeCustomerId,
+      {
+        invoice_settings: {
+          default_payment_method: paymentMethodId,
+        },
+      }
+    );
+
+    res.send({ customer });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Stripe error');
+  }
 });
 
 module.exports = router;

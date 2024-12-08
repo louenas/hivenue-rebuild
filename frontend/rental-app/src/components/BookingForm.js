@@ -34,7 +34,7 @@ const BookingForm = ({ apartmentId }) => {
         setClientSecret(res.data.clientSecret);
       } catch (err) {
         console.error('Error creating SetupIntent:', err);
-        setError('Failed to initialize payment method.');
+        setError('Failed to initialize payment.');
       }
     };
 
@@ -71,6 +71,15 @@ const BookingForm = ({ apartmentId }) => {
       } else {
         // Payment method successfully saved
         const paymentMethodId = paymentResult.setupIntent.payment_method;
+
+        // Set the payment method as the customer's default
+        await axios.post('/payments/set-default-payment-method', { 
+          paymentMethodId 
+        }, {
+          headers: {
+            'Authorization': `Bearer ${authData.token}`
+          }
+        });
 
         // Create booking request with saved payment method
         const bookingRes = await axios.post('/bookings', {

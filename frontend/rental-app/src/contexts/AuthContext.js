@@ -30,14 +30,9 @@ export const AuthProvider = ({ children }) => {
     // eslint-disable-next-line
   }, [authData.token]);
 
-  const login = (token) => {
+  const login = (token, user) => {
     localStorage.setItem('token', token);
-    try {
-      const decoded = jwtDecode(token); // Updated usage
-      setAuthData({ token, user: decoded });
-    } catch (err) {
-      console.error('Failed to decode token during login:', err);
-    }
+    setAuthData({ token, user });
   };
 
   const logout = () => {

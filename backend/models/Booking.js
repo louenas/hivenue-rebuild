@@ -54,6 +54,15 @@ const BookingSchema = new mongoose.Schema({
     enum: ['Pending', 'Paid', 'Failed'],
     default: 'Pending',
   },
+  subscriptionId: {
+    type: String,
+    default: null,
+  },
+  subscriptionStatus: {
+    type: String,
+    enum: ['active', 'canceled', 'incomplete', 'incomplete_expired', 'past_due', 'trialing', 'paused', 'unpaid'],
+    default: null,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

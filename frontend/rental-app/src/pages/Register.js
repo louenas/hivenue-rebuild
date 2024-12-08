@@ -4,11 +4,12 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import {jwtDecode} from 'jwt-decode';
 
 const Register = () => {
   const { role } = useParams(); // Extract role from URL (tenant or owner)
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext); // Access login function from AuthContext
+  const { setUser } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -35,10 +36,23 @@ const Register = () => {
 
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, formData);
-      setSuccess('Registration successful! Redirecting to dashboard...');
+      const { token } = res.data;
       
-      // Optionally, log in the user immediately after registration
-      login(res.data.token);
+      // Store the token
+      localStorage.setItem('token', token);
+      
+      // Decode the token to get user info
+      const decoded = jwtDecode(token);
+      const user = {
+        id: decoded.id,
+        role: decoded.role,
+        name: decoded.name
+      };
+      
+      // Set the user state
+      setUser(user);
+      
+      setSuccess('Registration successful! Redirecting to dashboard...');
       
       // Redirect to dashboard after a short delay
       setTimeout(() => {

@@ -7,7 +7,7 @@ const auth = require('../middleware/auth'); // Authentication middleware
 const authorize = require('../middleware/authorize'); // Authorization middleware
 const Booking = require('../models/Booking'); // Booking model
 const Apartment = require('../models/Apartment'); // Apartment model
-const stripe = require('../config/stripe'); // Stripe instance
+const stripe = require('../utils/stripe'); // Stripe instance
 const logger = require('../utils/logger'); // Logger (optional, for better logging)
 const InvoiceService = require('../services/invoiceService'); // Invoice service
 
@@ -179,25 +179,71 @@ router.post('/:id/owner-approve', auth, authorize('owner'), async (req, res) => 
     if (!apartment) {
       return res.status(404).json({ message: 'Apartment not found.' });
     }
-    
-    booking.amount = apartment.pricePerMonth * durationMonths; // Set the calculated amount
+
+    booking.amount = apartment.pricePerMonth * durationMonths;
 
     // Update owner approval status
     booking.ownerApproved = true;
     booking.status = 'Owner Approved';
 
-    // Create an invoice after owner approval
-    const invoice = await InvoiceService.createInvoice(booking); // Create an invoice using a service
-    booking.invoiceId = invoice.id; // Save the invoice ID to the booking
-    booking.invoiceStatus = 'Pending'; // Set the invoice status
+    if (durationMonths <= 2) {
+      // For stays of 2 months or less, create a single invoice for the full amount
+      const invoice = await InvoiceService.createInvoice(booking);
+      booking.invoiceId = invoice.id;
+      booking.invoiceStatus = 'Pending';
+    } else {
+      // For stays longer than 2 months:
+      // 1. Create an invoice for the first month
+      const firstMonthBooking = { ...booking.toObject(), amount: apartment.pricePerMonth };
+      const firstInvoice = await InvoiceService.createInvoice(firstMonthBooking);
+      booking.invoiceId = firstInvoice.id;
+      booking.invoiceStatus = 'Pending';
+
+      // 2. Create a product for the subscription
+      const product = await stripe.products.create({
+        name: `Monthly Rent - ${apartment.title}`,
+        description: `Monthly rent payment for ${apartment.title}`,
+      });
+
+      // 3. Create a price for the product
+      const price = await stripe.prices.create({
+        product: product.id,
+        unit_amount: apartment.pricePerMonth * 100, // convert to cents
+        currency: 'usd',
+        recurring: {
+          interval: 'month',
+        },
+      });
+
+      // 4. Create the subscription using the price
+      const bookingStartDate = new Date(booking.startDate);
+      const trialEndDate = new Date(bookingStartDate.getFullYear(), bookingStartDate.getMonth() + 1, 0);
+      const trialEndTimestamp = Math.floor(trialEndDate.getTime() / 1000);
+
+      const subscription = await stripe.subscriptions.create({
+        customer: booking.tenant.stripeCustomerId,
+        items: [{
+          price: price.id,
+        }],
+        trial_end: trialEndTimestamp,
+        cancel_at: Math.floor(new Date(booking.endDate).getTime() / 1000), // End subscription at booking end date
+      });
+
+      booking.subscriptionId = subscription.id;
+    }
 
     // Save the updated booking
     await booking.save();
 
-    res.json({ message: 'Booking approved by owner and invoice created successfully.', booking });
+    res.json({ 
+      message: durationMonths <= 2 
+        ? 'Booking approved by owner and invoice created successfully.' 
+        : 'Booking approved by owner, first month invoice and subscription created successfully.',
+      booking 
+    });
   } catch (error) {
     console.error('Error approving booking by owner:', error);
-    res.status(500).json({ message: 'Failed to approve booking and create invoice.' });
+    res.status(500).json({ message: 'Failed to approve booking and create invoice/subscription.' });
   }
 });
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 import ApartmentCard from '../components/ApartmentCard';
 import Navbar from '../components/Navbar';
 import { AuthContext } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [apartments, setApartments] = useState([]);
@@ -46,6 +47,9 @@ const Home = () => {
   return (
     <div>
       <h1>Apartment Listings</h1>
+      <Link to="/add-apartment">
+        <button>Create Apartment</button>
+      </Link>
       <form onSubmit={handleSearch}>
         <input type="text" name="city" placeholder="City" value={search.city} onChange={e => setSearch({ ...search, city: e.target.value })} />
         <input type="number" name="price" placeholder="Max Price" value={search.price} onChange={e => setSearch({ ...search, price: e.target.value })} />

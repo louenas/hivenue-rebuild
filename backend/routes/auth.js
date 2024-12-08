@@ -1,4 +1,5 @@
 // backend/routes/authRoutes.js
+require('dotenv').config();
 
 const express = require('express');
 const router = express.Router();
@@ -6,7 +7,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const stripe = require('../utils/stripe'); // Stripe instance
-require('dotenv').config();
 
 // Allowed roles
 const allowedRoles = ['admin', 'manager', 'owner', 'tenant'];
@@ -60,7 +60,7 @@ router.post('/register', async (req, res) => {
     await createStripeCustomer(user);
 
     // Create JWT payload
-    const payload = { id: user.id, role: user.role };
+    const payload = { id: user.id, role: user.role, name: user.name };
 
     // Sign token
     jwt.sign(
@@ -69,7 +69,15 @@ router.post('/register', async (req, res) => {
       { expiresIn: '7d' }, // Token expires in 7 days
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ 
+          token,
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role
+          }
+        });
       },
     );
   } catch (err) {
@@ -97,7 +105,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Create JWT payload
-    const payload = { id: user.id, role: user.role };
+    const payload = { id: user.id, role: user.role, name: user.name };
 
     // Sign token
     jwt.sign(
@@ -106,7 +114,9 @@ router.post('/login', async (req, res) => {
       { expiresIn: '7d' }, // Token expires in 7 days
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ 
+          token,
+        });
       },
     );
   } catch (err) {

@@ -1,5 +1,97 @@
-{"level":"info","message":"User (674a69996900e658a05c7a27) with role (admin) accessed /api/bookings/pending","timestamp":"2024-11-30T04:52:55.737Z"}
-{"level":"info","message":"User (674a69996900e658a05c7a27) with role (admin) accessed /api/bookings/pending","timestamp":"2024-11-30T04:52:55.740Z"}
-{"level":"info","message":"User (674779538c41c835e2c14655) with role (owner) accessed /api/bookings/pending","timestamp":"2024-11-30T04:53:00.683Z"}
-{"level":"info","message":"User (674779538c41c835e2c14655) with role (owner) accessed /api/bookings/pending","timestamp":"2024-11-30T04:53:00.739Z"}
-{"level":"info","message":"User (674779538c41c835e2c14655) with role (owner) accessed /api/bookings/pending","timestamp":"2024-11-30T04:53:00.753Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T02:58:13.584Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T02:58:24.763Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T02:58:24.765Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T02:58:29.381Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T02:58:29.383Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-05T02:58:43.773Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-05T02:58:43.780Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-05T02:58:45.606Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-05T02:58:45.614Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-05T02:58:54.501Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-05T02:58:54.509Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-05T02:58:55.994Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-05T02:58:56.001Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T02:59:31.600Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T02:59:31.601Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T04:44:36.110Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-05T04:50:49.249Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-05T04:50:49.257Z"}
+{"level":"info","message":"User (675115c0afbef0801c3a07f5) with role (tenant) accessed /api/bookings","timestamp":"2024-12-05T04:51:27.601Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T04:51:45.133Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T04:51:45.135Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T04:51:48.590Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-05T04:51:48.592Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-05T04:52:18.977Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-05T04:52:18.990Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:34:19.239Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:34:19.268Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:34:19.280Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/6751314f868675c6185565e2/admin-approve","timestamp":"2024-12-06T03:34:21.826Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:34:28.905Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:34:28.906Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/6751314f868675c6185565e2/owner-approve","timestamp":"2024-12-06T03:34:32.914Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:51:59.861Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:51:59.875Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:51:59.882Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:52:25.552Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:52:25.563Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:52:25.570Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:52:27.589Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:52:39.895Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:52:39.905Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:52:41.726Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:52:41.735Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:52:43.071Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:52:43.079Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:52:48.376Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:52:48.384Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:52:49.786Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:52:49.793Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:52:50.963Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:52:50.970Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:52:55.165Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:52:56.930Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:52:56.931Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:55:13.298Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:55:13.303Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:55:13.308Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-06T03:55:14.626Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:19.055Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:23.322Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:23.323Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:26.912Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:26.914Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:29.138Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:29.140Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:30.031Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:30.033Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:31.090Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:35.072Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:35.078Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:35.084Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:37.125Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-06T03:55:38.221Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:56:23.137Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T03:56:23.138Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/6751314f868675c6185565e2/owner-approve","timestamp":"2024-12-06T03:56:26.190Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T04:14:40.941Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T04:14:40.946Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/6751314f868675c6185565e2/owner-approve","timestamp":"2024-12-06T04:14:42.698Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T04:23:17.994Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T04:23:17.998Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/6751314f868675c6185565e2/owner-approve","timestamp":"2024-12-06T04:23:19.794Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T04:26:41.896Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-06T04:26:41.897Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/6751314f868675c6185565e2/owner-approve","timestamp":"2024-12-06T04:26:45.407Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-07T01:20:36.178Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-07T01:20:36.193Z"}
+{"level":"info","message":"User (675116a2afbef0801c3a0800) with role (admin) accessed /api/bookings/pending","timestamp":"2024-12-07T01:20:36.203Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-07T01:21:06.007Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-07T01:21:06.008Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-07T01:21:08.124Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-07T01:21:08.125Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-07T01:21:59.297Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/pending","timestamp":"2024-12-07T01:21:59.298Z"}
+{"level":"info","message":"User (6751163fafbef0801c3a07fa) with role (owner) accessed /api/bookings/6751314f868675c6185565e2/owner-approve","timestamp":"2024-12-07T01:22:11.305Z"}
+{"level":"warn","message":"Forbidden access attempt by user ID 675115c0afbef0801c3a07f5 with role tenant to /api/bookings/pending","timestamp":"2024-12-07T01:23:13.298Z"}
+{"level":"info","message":"User (675115c0afbef0801c3a07f5) with role (tenant) accessed /api/bookings","timestamp":"2024-12-07T01:23:53.670Z"}

@@ -8,7 +8,7 @@ import './Navbar.css'; // Ensure this path is correct
 const Navbar = () => {
   const { authData, logout } = useContext(AuthContext);
   
-  const { user, role } = authData;
+  const { user } = authData;
 
   return (
     <nav className="navbar">
@@ -17,12 +17,12 @@ const Navbar = () => {
         <li><Link to="/">Home</Link></li>
         {!authData.token && <li><Link to="/login">Login</Link></li>}
         {!authData.token && <li><Link to="/register/tenant">Register</Link></li>}
-        {authData.token && <li><Link to="/admin">Dashboard</Link></li>}
+        {user && (user.role === 'admin' || user.role === 'owner') && <li><Link to="/admin">Dashboard</Link></li>}
         {authData.token && <li><Link to="/bookings">Bookings</Link></li>}
         {authData.token && (
           <>
             <li><button onClick={logout} className="logout-button">Logout</button></li>
-            <li><span>{user ? user.name : 'User'} / {role}</span></li>
+            <li><span>Welcome, {user ? user.name : ''}</span></li>
           </>
         )}
       </ul>

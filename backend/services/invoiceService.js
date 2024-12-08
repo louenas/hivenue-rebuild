@@ -1,4 +1,4 @@
-const stripe = require('../config/stripe');
+const stripe = require('../utils/stripe');
 
 const createInvoice = async (booking) => {
   try {

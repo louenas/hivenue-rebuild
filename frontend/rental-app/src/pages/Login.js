@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post('/api/auth/login', { email, password });
-      login(res.data.token);
+      login(res.data.token, res.data.user);
       navigate('/dashboard');
     } catch (err) {
       setError(err.response.data.message || 'Login failed.');

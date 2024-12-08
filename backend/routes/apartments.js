@@ -35,7 +35,7 @@ router.post('/', auth, upload.array('images', 5), async (req, res) => {
       availabilityPeriods: JSON.parse(availabilityPeriods),
       amenities: JSON.parse(amenities),
       images,
-      price,
+      pricePerMonth:price,
       city,
       address,
     });

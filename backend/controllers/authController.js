@@ -1,17 +1,16 @@
 // backend/controllers/authController.js
-
+require('dotenv').config();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const stripe = require('../utils/stripe'); // Ensure you have a Stripe instance
-require('dotenv').config();
 
 // Register User
 exports.register = async (req, res) => {
   const { name, email, password, role } = req.body;
 
   // Define allowed roles
-  const allowedRoles = ['admin', 'manager', 'owner', 'tenant'];
+  const allowedRoles = ['admin', 'owner', 'tenant'];
   
   // Validate role
   if (!allowedRoles.includes(role)) {

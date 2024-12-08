@@ -1,8 +1,8 @@
 // backend/middleware/auth.js
+require('dotenv').config();
 
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-require('dotenv').config();
 
 const auth = async (req, res, next) => {
   // Retrieve token from 'Authorization' header (Bearer token)
