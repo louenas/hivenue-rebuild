@@ -14,19 +14,14 @@ router.post('/stripe', express.raw({ type: 'application/json' }), async (req, re
 
   console.log('Received webhook event:', event);
 
-  // try {
-  //   event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
-  // } catch (err) {
-  //   console.error('Webhook signature verification failed:', err.message);
-  //   return res.status(400).send(`Webhook Error: ${err.message}`);
-  // }
   let invoice;
+
   // Handle the event
   switch (event.type) {
     case 'invoice.payment_succeeded':
     case 'invoice.paid':
       invoice = event.data.object;
-      // Find the booking by paymentIntentId and update status if needed
+      // Find the booking by invoiceId and update status if needed
       try {
         const booking = await Booking.findOne({ invoiceId: invoice.id });
         if (booking) {
@@ -55,13 +50,13 @@ router.post('/stripe', express.raw({ type: 'application/json' }), async (req, re
       break;
     case 'customer.subscription.updated':
       subscription = event.data.object;
-      // possible statuses: active, canceled, incomplete, incomplete_expired, past_due, trialing, paused, unpaid
+      // Possible statuses: active, canceled, incomplete, incomplete_expired, past_due, trialing, paused, unpaid
       try {
         const booking = await Booking.findOne({ subscriptionId: subscription.id });
         if (booking) {
           booking.subscriptionStatus = subscription.status;
           await booking.save();
-          
+
           // Handle specific subscription statuses
           switch (subscription.status) {
             case 'past_due':
@@ -80,6 +75,20 @@ router.post('/stripe', express.raw({ type: 'application/json' }), async (req, re
         }
       } catch (err) {
         console.error('Error updating subscription status:', err);
+      }
+      break;
+    case 'invoice.created':
+      invoice = event.data.object;
+
+      let bookingId = invoice.metadata.bookingId;
+      console.log(`Invoice created: ${invoice.id} for Booking ID: ${bookingId}`);
+
+      try {
+        // Set auto_advance to false to keep the invoice in draft status
+        await stripe.invoices.update(invoice.id, { auto_advance: false });
+        console.log(`Invoice set to draft: ${invoice.id}`);
+      } catch (error) {
+        console.error('Error setting invoice to draft:', error);
       }
       break;
     default:

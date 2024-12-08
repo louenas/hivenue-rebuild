@@ -227,6 +227,9 @@ router.post('/:id/owner-approve', auth, authorize('owner'), async (req, res) => 
         }],
         trial_end: trialEndTimestamp,
         cancel_at: Math.floor(new Date(booking.endDate).getTime() / 1000), // End subscription at booking end date
+        collection_method: 'send_invoice',
+        days_until_due: 1,
+        payment_behavior: 'allow_incomplete',
       });
 
       booking.subscriptionId = subscription.id;
